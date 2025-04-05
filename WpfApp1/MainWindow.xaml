@@ -7,7 +7,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Image Source="C:\Users\Nazar\Desktop\MathAnalys\StudyUni\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\maxresdefault.jpg" Stretch="UniformToFill" />
+        <Image Source="C:\Users\Nazar\Desktop\MathAnalys\StudyUni\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\maxresdefault.jpg" Stretch="UniformToFill"  Grid.RowSpan="2" Panel.ZIndex="0"/>
         <StackPanel Orientation="Vertical" Margin="10" >
             <WrapPanel Panel.ZIndex="1">
                 <TextBlock Text="A" Margin="5" Foreground="White"/>
@@ -29,7 +29,7 @@
             </WrapPanel>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Foreground="White" >
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" Panel.ZIndex="1" >
             <WrapPanel x:Name="ButtonsPanel" Margin="10"/>
         </ScrollViewer>
     </Grid>

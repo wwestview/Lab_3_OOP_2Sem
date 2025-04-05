@@ -65,7 +65,6 @@ namespace WpfApp1
 
             if (removedCount == 0)
             {
-                // 🔁 Шлях до локального відео (заміни на свій)
                 string videoPath = @"C:\Users\Nazar\Desktop\MathAnalys\StudyUni\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\Wide Zelensky Walk.mp4";
 
                 if (System.IO.File.Exists(videoPath))
