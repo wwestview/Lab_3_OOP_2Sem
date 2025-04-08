@@ -11,7 +11,7 @@
         <StackPanel Orientation="Vertical" Margin="10" >
             <WrapPanel Panel.ZIndex="1">
                 <TextBlock Text="A" Margin="5" Foreground="White"/>
-                <TextBox x:Name="FromTextBox" Width="100" Text="123" Margin="5" TextChanged="FromTextBox_TextChanged" />
+                <TextBox x:Name="FromTextBox" Width="100" Text="123" Margin="5"  />
 
                 <TextBlock Text="B" Margin="5" Foreground="White" />
                 <TextBox x:Name="ToTextBox" Width="100" Text="987564" Margin="5"/>
