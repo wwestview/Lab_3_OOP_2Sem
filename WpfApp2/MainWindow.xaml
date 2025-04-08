@@ -12,7 +12,7 @@
             <Button x:Name="NoButton" Content="Ні" Width="75" Height="30" Canvas.Left="466" Canvas.Top="197"
                 MouseEnter="EscButton_MouseEnter" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-            <Label Content="Life could be dream?" Height="35" Canvas.Left="259" Canvas.Top="95" Width="282" HorizontalContentAlignment="Center" FontSize="22" FontFamily="Metropolis" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label Content="Life could be dream" Height="35" Canvas.Left="259" Canvas.Top="60" Width="282" HorizontalContentAlignment="Center" FontSize="22" FontFamily="Metropolis" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </Canvas>
     </Grid>
 </Window>
