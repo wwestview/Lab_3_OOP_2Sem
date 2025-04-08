@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel; 
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,15 +8,19 @@ namespace WpfApp1
 {
     public partial class MainWindow : Window
     {
+        public ObservableCollection<int> Numbers { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            Numbers = new ObservableCollection<int>();
+            this.DataContext = this;
         }
 
         private void GenerateButtons_Click(object sender, RoutedEventArgs e)
         {
-            ButtonsPanel.Children.Clear();
-
+            Numbers.Clear();
             if (!int.TryParse(FromTextBox.Text, out int from) || !int.TryParse(ToTextBox.Text, out int to) || !int.TryParse(StepTextBox.Text, out int step) || step <= 0 || from > to)
             {
                 MessageBox.Show("Перевірте правильність введення даних.");
@@ -24,20 +29,9 @@ namespace WpfApp1
 
             for (int i = from; i <= to; i += step)
             {
-                var btn = new Button
-                {
-                    Content = i.ToString(),
-                    Margin = new Thickness(3),
-                    Padding = new Thickness(5),
-                    Tag = i 
-                };
-
-                btn.Click += NumberButton_Click;
-
-                ButtonsPanel.Children.Add(btn);
+                Numbers.Add(i);
             }
         }
-
 
         private void RemoveMultiples_Click(object sender, RoutedEventArgs e)
         {
@@ -49,29 +43,36 @@ namespace WpfApp1
 
             int removedCount = 0;
 
-            for (int i = ButtonsPanel.Children.Count - 1; i >= 0; i--)
+            for (int i = Numbers.Count - 1; i >= 0; i--)
             {
-                if (ButtonsPanel.Children[i] is Button btn &&
-                    int.TryParse(btn.Content.ToString(), out int value) &&
-                    value % multiple == 0)
+                if (Numbers[i] % multiple == 0)
                 {
-                    ButtonsPanel.Children.RemoveAt(i);
+                    Numbers.RemoveAt(i); 
                     removedCount++;
                 }
             }
 
+           
+
             if (removedCount == 0)
             {
-                string videoPath = @"C:\Users\Nazar\Desktop\MathAnalys\StudyUni\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\Wide Zelensky Walk.mp4";
+                string videoPath = @"C:\Users\Nazar\Desktop\MathAnalys\StudyUni\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\Wide Zelensky Walk.mp4"; // Розгляньте використання відносного шляху або конфігурації
 
                 if (System.IO.File.Exists(videoPath))
                 {
                     MessageBox.Show("Кидаю плотний салам!");
-                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    try 
                     {
-                        FileName = videoPath,
-                        UseShellExecute = true
-                    });
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = videoPath,
+                            UseShellExecute = true 
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Не вдалося відкрити відеофайл: {ex.Message}");
+                    }
                 }
                 else
                 {
@@ -95,22 +96,20 @@ namespace WpfApp1
 
         private void NumberButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn && int.TryParse(btn.Content.ToString(), out int number))
+            if (sender is Button btn)
             {
-                if (IsPrime(number))
+                if (btn.DataContext is int number)
                 {
-                    MessageBox.Show($"{number} — це просте число.");
-                }
-                else
-                {
-                    MessageBox.Show($"{number} — це складене число.");
+                    if (IsPrime(number))
+                    {
+                        MessageBox.Show($"{number} — це просте число.");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{number} — це складене число.");
+                    }
                 }
             }
-        }
-
-        private void FromTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
