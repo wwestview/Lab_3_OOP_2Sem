@@ -16,10 +16,7 @@ namespace WpfApp1
         {
             ButtonsPanel.Children.Clear();
 
-            if (!int.TryParse(FromTextBox.Text, out int from) ||
-                !int.TryParse(ToTextBox.Text, out int to) ||
-                !int.TryParse(StepTextBox.Text, out int step) ||
-                step <= 0 || from > to)
+            if (!int.TryParse(FromTextBox.Text, out int from) || !int.TryParse(ToTextBox.Text, out int to) || !int.TryParse(StepTextBox.Text, out int step) || step <= 0 || from > to)
             {
                 MessageBox.Show("Перевірте правильність введення даних.");
                 return;
@@ -32,7 +29,7 @@ namespace WpfApp1
                     Content = i.ToString(),
                     Margin = new Thickness(3),
                     Padding = new Thickness(5),
-                    Tag = i // збережемо число в Tag
+                    Tag = i 
                 };
 
                 btn.Click += NumberButton_Click;
